@@ -1,19 +1,36 @@
-import { Grid, Paper, Table, TableContainer, TableHead, TableRow } from '@material-ui/core';
-import { Button, TableCell, TextField, Typography, ButtonBase, TableBody } from '@mui/material';
+import { Dialog, Grid, Paper, Table, TableContainer, TableHead, TableRow } from '@material-ui/core';
+import { Button, TableCell, TextField, Typography, ButtonBase, TableBody,Slide, AppBar, Toolbar, Icon, IconButton, List, ListItem, ListItemText, Divider,  } from '@mui/material';
 import React, {useEffect, useState} from 'react'
 import { useDispatch,useSelector } from 'react-redux';
 import { createAddressPosts, getAddressPosts, getAddressPostByName } from '../../actions/postAddress';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import {Link, useNavigate, useLocation} from 'react-router-dom';
+import CloseIcon from '@mui/icons-material/Close';
 
 const initialState = {address: '', city: '', state: ''};
 
+const Transition = React.forwardRef(function Transition(props, ref){
+    return <Slide direction="down" ref={ref} {...props} />;
+});
+
+
 
 const Contact = () => { 
+
+    const [openDialog, setOpenDialog ] = useState(false);
+
+    const handleClickOpenDialog  = () => {
+        setOpenDialog(true);
+    }
+
+    const handleClickCloseDialog = () => {
+        setOpenDialog(false);
+    }
     
     //const [currentId, setCurrentId] = useState(0);
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
     const [postAddress, setPostAddress] = useState(initialState);
+    const [currentSelectAddress, setCurrentSelectAddress] = useState(initialState);
     const [isEnterAddress, setIsEnterAddress] = useState(false);
     const dispatch = useDispatch();
     // const postAddresses = useSelector((postAddress) => postAddress.posts);
@@ -38,13 +55,16 @@ const Contact = () => {
     }
     
     const detailAddressClick = postAddress => () => {
-        
-        navigate(`/address/${postAddress._id}`)
+        setCurrentSelectAddress(postAddress);
+        handleClickOpenDialog();
+        // navigate(`/address/${postAddress._id}`)
     }
     
     const clear = () => {
         setPostAddress(initialState);
     };
+    
+
     
 	return (
         <>
@@ -114,6 +134,33 @@ const Contact = () => {
             </Table>
             </TableContainer>
         }
+        <Dialog fullScreen open={openDialog} onClose={handleClickCloseDialog} TransitionComponent={Transition}>
+
+            <AppBar sx={{position: 'relative'}}>
+                <Toolbar>
+                    <IconButton edge="start" color="inherit" onClick={handleClickCloseDialog}>
+                        <CloseIcon/>
+                    </IconButton>
+                    <Typography sx={{ml: 2, flex: 1}} variant="h6" component="div">
+                        Address Detail
+                    </Typography>
+                </Toolbar>
+            </AppBar>
+
+            <Typography>
+                {currentSelectAddress.name}
+            </Typography>
+            <Typography>
+                {currentSelectAddress.address}
+            </Typography>
+            <Typography>
+                {currentSelectAddress.city}
+            </Typography>
+            <Typography>
+                {currentSelectAddress.state}
+            </Typography>
+
+        </Dialog>
         </>
 	)
 }

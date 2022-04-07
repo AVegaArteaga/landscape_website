@@ -1,27 +1,30 @@
 import React, { useState } from 'react';
-import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import useStyles from './styles';
-import Input from './Input';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { GoogleLogin } from 'react-google-login';
-import {AUTH} from '../../constants/actionTypes';
-
-import { signin, signup } from '../../actions/auth';
-import { useNavigate } from 'react-router-dom';
 import PasswordStrengthBar from 'react-password-strength-bar';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { GoogleLogin } from 'react-google-login';
+import { Avatar, Button, Paper, Grid, Typography } from '@material-ui/core';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+
+import {AUTH} from '../../constants/actionTypes';
+import { signin, signup } from '../../actions/auth';
+
+import useStyles from './styles';
 import Icon from './icons';
+import Input from './Input';
 
 const initialState = { firstName: '', email: '', password: '', confirmPassword: '' , lastName: ''};
 
 const SignUp = () => {
+  
   const [formData, setForm]     = useState(initialState);
-  const [isSignup, setIsSignup] = useState(false);
+
   const [isSigninSuccess, setIsSigninSuccess]   = useState(false);
   const [isSignupSuccess, setIsSignupSuccess]   = useState(false);
-  const [passwordStregnth, setPasswordStrength] = useState(0);
+  const [isSignup, setIsSignup] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [passwordStregnth, setPasswordStrength] = useState(0);
+  const passwordStregnthLimit = 1;
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -30,6 +33,9 @@ const SignUp = () => {
 
   //inverts the showPassword bool
   const handleShowPassword = () => setShowPassword(!showPassword);
+
+  //sets the data from the feild to the formData
+  const handleChange = (e) => setForm({ ...formData, [e.target.name]: e.target.value }); // sign up <--> sign in keeps the same email and password
   
   //switching login to signout
   const switchMode = () => {
@@ -39,7 +45,11 @@ const SignUp = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
     setShowPassword(false);
   };
-
+  
+  //Sets the score of the password
+  function handleChangeScore (score, feedback) {setPasswordStrength(score)}
+  
+  
   //Gets response from googleSuccess that has profile and tokenId
   const googleSuccess = async (res) => {
     const result = res?.profileObj;
@@ -53,14 +63,8 @@ const SignUp = () => {
     }
   };
 
-  //Sets the score of the password
-  function handleChangeScore (score, feedback) {setPasswordStrength(score)}
-
   //alerts if Google failed to sign in
   const googleError = () => alert('Google Sign In was unsuccessful. Try again later');
-
-  //sets the data from the feild to the formData
-  const handleChange = (e) => setForm({ ...formData, [e.target.name]: e.target.value }); // sign up <--> sign in keeps the same email and password
 
   //Clears the text feild
   const clearText = () =>{
@@ -70,49 +74,43 @@ const SignUp = () => {
 
   //start of the to backend
   const handleSubmit = (e) => {
+    //prevent screen to refresh
     e.preventDefault();
 
-    
-    /*
-    Connecting Backend Code
-    */
-   if (isSignup) {
-
-     if(passwordStregnth <= 1){ 
-       console.log("Too Weak of a Password!");  
-       return false;
-     }
-
-     if(formData.password != formData.confirmPassword){ 
-       console.log("Does Not Match!");  
-       return false;
-     }
-     
-     dispatch(signup(formData,navigate))
-      //.catch(setIsSignupSuccess(true)) //fix because .catch catches both success and failure
-
-    } else {
-      dispatch(signin(formData,navigate))
-      //.catch(setIsSigninSuccess(true))
+    //Connecting Backend Code
+    if (isSignup) {
+      //check password strength
+      if(passwordStregnth < passwordStregnthLimit){ 
+        console.log("Too Weak of a Password!");  
+        return false;
+      }
+      //check if password is the same
+      if(formData.password != formData.confirmPassword){ 
+        console.log("Does Not Match!");  
+        return false;
+      }
+      //validate password, send to /actions
+      dispatch(signup(formData,navigate))
     }
-    clearText()
+    //logging in 
+    else {
+      dispatch(signin(formData,navigate))
+      clearText()
+    }
   };
   
-  //className={classes.submit}
   return( 
-        <Paper className={classes.paper} elevation={6}>
+        <Paper className={classes.paper} elevation={6}>        
           
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
           
           <Typography component="h1" variant="h5">{ isSignup ? 'Sign up' : 'Sign in' }</Typography>
-        
           {  isSigninSuccess && <Typography component="h1" variant="h6">Email/Password is in correct!</Typography>}
           {  isSignupSuccess && <Typography component="h1" variant="h6">Email already taken!</Typography>}
-
-          <form className={classes.form} onSubmit={handleSubmit}>
-            
+          
+          <form className={classes.form} onSubmit={handleSubmit}> 
             <Grid container spacing={2}>
               {isSignup && (
                 <>
@@ -125,8 +123,8 @@ const SignUp = () => {
               <Input name="password" val={formData.password} label="Password" handleChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword}/>
               { isSignup && <Input val={formData.confirmPassword} name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" handleShowPassword={handleShowPassword}/> }
             </Grid>
-
-            <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+                                                                                          {/* passwordStregnth Yeah, this is weird looking statments, may want to change this*/}
+            <Button type="submit" fullWidth variant="contained" color="primary" className={(isSignup ? passwordStregnth > passwordStregnthLimit : formData.password.length) ? classes.submitFillPassword : classes.submit}>
               { isSignup ? 'Sign Up' : 'Sign In' }
             </Button>
 
@@ -141,6 +139,7 @@ const SignUp = () => {
               onFailure={googleError}
               cookiePolicy="single_host_origin"
             />
+
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Button onClick={switchMode} >
@@ -148,11 +147,10 @@ const SignUp = () => {
                 </Button>
               </Grid>
             </Grid>
+
           </form>
         </Paper>
-    
   )
- 
 };
 
 export default SignUp;

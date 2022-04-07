@@ -9,6 +9,8 @@ const postSchema = mongoose.Schema({
     city: String,
     state: String,
 
+    
+
     service:{
         type: String,
         default: new Date(),

@@ -3,30 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 // import imageWall from '../../images/sunset.jpg';
 
 export default makeStyles((theme) => ({
-//   background: {
-//     backgroundImage: `url(${imageWall})`,
-//     display: 'flex',
-//     justifyContent: 'center',
-//     width: '100%',
-//     height: '100%',
-    
-//     backgroundRepeat: 'no-repeat',
-//     backgroundSize: 'cover',
-//     position: 'absolute', 
-// },
-  // centerPaper:{
-  //   display: 'flex',
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  //   margin: "auto",
-  //   width: "50%",
-  //   height: "50%",
-
-  // },
 
   shadowButton:{
-    //alignItems: 'flex-start',
-    
     background: 'linear-gradient(45deg, #81c784 30%, #BAEBBD 90%)',
     border:0,
     borderRadius: 3,
@@ -58,8 +36,16 @@ export default makeStyles((theme) => ({
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(3),
   },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
+  submitFillPassword:{
+    margin: theme.spacing(1,0,1,0),
+    backgroundColor: "#81c784"
+  }, 
+  submit:{
+    margin: theme.spacing(1,0,1,0),
+    backgroundColor: "#818181",
+    // '&:hover':{
+    //   backgroundColor: "#81c784"
+    // }
   },
   googleButton: {
     marginBottom: theme.spacing(2),
@@ -68,12 +54,6 @@ export default makeStyles((theme) => ({
     width: '95%',
     marginLeft: '11px',
   },
-  submit:{
-    marginTop: "10px",
-    backgroundColor: "#818181",
-    '&:hover':{
-      backgroundColor: "#81c784"
-    }
-  }
+
   //style={{ width: '90%' , marginLeft: '11px'  }}
 }));

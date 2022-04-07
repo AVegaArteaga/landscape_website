@@ -2,6 +2,7 @@ import { Button, Paper, Typography } from "@material-ui/core";
 import React, {useState} from "react";
 import useStyles from './styles'
 import {useNavigate} from 'react-router-dom'; 
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const Detail = () =>{
 
@@ -21,15 +22,12 @@ const Detail = () =>{
          <Paper className={classes.paper} elevation={6}>
 
             <Typography>
-                Check here for Weekly Schedule <br/> 
-                
-                <Button onClick={addressDetail}>
-                    hello
-                </Button>
-                Check here for Weekly Schedule <br/> 
-                Check here for Weekly Schedule <br/> 
-                Check here for Weekly Schedule <br/> 
+                View service dates!
             </Typography>
+                
+            <Button onClick={addressDetail}>
+                View<ArrowForwardIcon/>
+            </Button>
          </Paper>
     );
 
