@@ -22,10 +22,11 @@ const Detail = () =>{
          <Paper className={classes.paper} elevation={6}>
 
             <Typography>
-                View service dates!
+                View service dates & Address
             </Typography>
+            
                 
-            <Button onClick={addressDetail}>
+            <Button className={classes.submitGreen} onClick={addressDetail}>
                 View<ArrowForwardIcon/>
             </Button>
          </Paper>

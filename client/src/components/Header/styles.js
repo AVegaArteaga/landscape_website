@@ -6,7 +6,11 @@ import { makeStyles } from '@material-ui/core/styles';
 export default makeStyles((theme) => ({
 
 
+    appBar:{
+
     
+        
+    },
     logo: {
         maxWidth: '80px',
         maxHeight:'80px',

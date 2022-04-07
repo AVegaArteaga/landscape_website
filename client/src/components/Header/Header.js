@@ -59,7 +59,7 @@ const Header = () => {
 
   return (
     
-      <AppBar position="fixed">
+      <AppBar position="fixed" className={classes.appBar}>
 
         <StyledToolbar>
 

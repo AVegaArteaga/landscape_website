@@ -17,6 +17,7 @@ export default makeStyles((theme) => ({
     },
   },
   paper: {
+    background: '#FDFCFC',
     width:"400px",
     display: 'inline-flex',
     flexDirection: 'column',
@@ -38,11 +39,14 @@ export default makeStyles((theme) => ({
   },
   submitFillPassword:{
     margin: theme.spacing(1,0,1,0),
-    backgroundColor: "#81c784"
+    background: 'linear-gradient(45deg, #81c784 35%, #BAEBBD 100%)',
+    '&:hover':{
+      backgroundColor: "#81c795"
+    }
   }, 
-  submit:{
+  submit:{ 
     margin: theme.spacing(1,0,1,0),
-    backgroundColor: "#818181",
+    background: 'linear-gradient(45deg, #818181 35%, #A3A3A3 100%)',
     // '&:hover':{
     //   backgroundColor: "#81c784"
     // }

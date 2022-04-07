@@ -6,6 +6,7 @@ import { createAddressPosts, getAddressPosts, getAddressPostByName } from '../..
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import {Link, useNavigate, useLocation} from 'react-router-dom';
 import CloseIcon from '@mui/icons-material/Close';
+import Header from '../Header/Header';
 
 const initialState = {address: '', city: '', state: ''};
 
@@ -65,24 +66,13 @@ const Contact = () => {
     };
     
 
+    // <Header/>
     
 	return (
         <>
-            <Paper>
-                <Button onClick={switchMode} >Enter New Address?</Button>
-                {isEnterAddress &&
-                <form autoComplete='off' noValidate onSubmit={handleSubmit}  >
-                    <Typography variant='h6' label="Title">Enter Address</Typography>
-                    <TextField required name='address' variant="outlined" label='Address' fullWidth value={postAddress.address} onChange={(e) => setPostAddress({...postAddress, address: e.target.value})}/>
-                    <TextField required name='city'    variant="outlined" label='City'    fullWidth value={postAddress.city}    onChange={(e) => setPostAddress({...postAddress, city: e.target.value})} />
-                    <TextField required name='state'   variant="outlined" label='State'   fullWidth value={postAddress.state}   onChange={(e) => setPostAddress({...postAddress, state: e.target.value})}/>
-                    <Button  variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
-                </form>
-                }
-            </Paper>
             
             {posts.length <= 1 ? 
-                posts.map((postAddress) =>(
+            posts.map((postAddress) =>(
                  <Paper key={postAddress._id}>
                      <Typography>
                          {postAddress.name}
@@ -133,7 +123,7 @@ const Contact = () => {
             </TableBody>
             </Table>
             </TableContainer>
-        }
+            }
         <Dialog fullScreen open={openDialog} onClose={handleClickCloseDialog} TransitionComponent={Transition}>
 
             <AppBar sx={{position: 'relative'}}>
@@ -161,6 +151,18 @@ const Contact = () => {
             </Typography>
 
         </Dialog>
+            <Paper>
+                <Button onClick={switchMode} >Enter New Address?</Button>
+                {isEnterAddress &&
+                <form autoComplete='off' noValidate onSubmit={handleSubmit}  >
+                    <Typography variant='h6' label="Title">Enter Address</Typography>
+                    <TextField required name='address' variant="outlined" label='Address' fullWidth value={postAddress.address} onChange={(e) => setPostAddress({...postAddress, address: e.target.value})}/>
+                    <TextField required name='city'    variant="outlined" label='City'    fullWidth value={postAddress.city}    onChange={(e) => setPostAddress({...postAddress, city: e.target.value})} />
+                    <TextField required name='state'   variant="outlined" label='State'   fullWidth value={postAddress.state}   onChange={(e) => setPostAddress({...postAddress, state: e.target.value})}/>
+                    <Button  variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
+                </form>
+                }
+            </Paper>
         </>
 	)
 }

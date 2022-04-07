@@ -123,8 +123,8 @@ const SignUp = () => {
               <Input name="password" val={formData.password} label="Password" handleChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword}/>
               { isSignup && <Input val={formData.confirmPassword} name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" handleShowPassword={handleShowPassword}/> }
             </Grid>
-                                                                                          {/* passwordStregnth Yeah, this is weird looking statments, may want to change this*/}
-            <Button type="submit" fullWidth variant="contained" color="primary" className={(isSignup ? passwordStregnth > passwordStregnthLimit : formData.password.length) ? classes.submitFillPassword : classes.submit}>
+                                                                                          {/*  Yeah, this is weird looking statments, may want to change this*/}
+            <Button type="submit" fullWidth variant="contained" disabled={(isSignup ? passwordStregnth > passwordStregnthLimit : formData.password.length) ? false : true} color="primary" className={(isSignup ? passwordStregnth > passwordStregnthLimit : formData.password.length) ? classes.submitFillPassword : classes.submit}>
               { isSignup ? 'Sign Up' : 'Sign In' }
             </Button>
 

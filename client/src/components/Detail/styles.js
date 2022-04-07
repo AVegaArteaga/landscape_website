@@ -39,6 +39,7 @@ export default makeStyles((theme) => ({
     },
   },
   paper: {
+    background: '#FDFCFC',
     width:"400px",
     display: 'inline-flex',
     flexDirection: 'column',
@@ -68,11 +69,11 @@ export default makeStyles((theme) => ({
     width: '95%',
     marginLeft: '11px',
   },
-  submit:{
+  submitGreen:{
     marginTop: "10px",
-    backgroundColor: "#818181",
+    background: 'linear-gradient(45deg, #81c784 25%, #BAEBBD 60%)',
     '&:hover':{
-      backgroundColor: "#81c784"
+      boxShadow: "1px 2px 5px 1px rgba(0, 0, 0, .2)",
     }
   }
   //style={{ width: '90%' , marginLeft: '11px'  }}
