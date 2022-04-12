@@ -9,24 +9,19 @@ const Detail = () =>{
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
     const classes = useStyles();    
     const navigate = useNavigate();
-    
-    console.log(user);
-
 
     const addressDetail = () =>{
-        
         navigate(`/address`);
     }
 
     return(
          <Paper className={classes.paper} elevation={6}>
-
             <Typography>
                 View service dates & Address
             </Typography>
             
                 
-            <Button className={classes.submitGreen} onClick={addressDetail}>
+            <Button onClick={addressDetail}>
                 View<ArrowForwardIcon/>
             </Button>
          </Paper>

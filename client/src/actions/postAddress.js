@@ -18,7 +18,6 @@ export const createAddressPosts = (postAddress) => async (dispatch) => {
 export const getAddressPostByName = (userIdObama) => async (dispatch) => {
 
     try {
-        console.log("hello")
         const {data} = await api.getAddressPostByName(userIdObama);
         // console.log("data in postAddress:")
         // console.log(data);

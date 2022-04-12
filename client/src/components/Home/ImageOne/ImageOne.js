@@ -4,7 +4,7 @@ import {Parallax} from 'react-parallax';
 import imageOne from '../../../images/Chicago2.jpg';
 import AuthComp from '../../Auth/Auth'; 
 import useStyles from './styles.js';
-import {Link, useNavigate, useLocation} from 'react-router-dom';
+import {useNavigate, useLocation} from 'react-router-dom';
 import { Paper } from '@material-ui/core';
 import decode from 'jwt-decode';
 import Detail from '../../Detail/Detail';

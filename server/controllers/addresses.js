@@ -25,7 +25,6 @@ export const getAddressPostByName = async(req, res) =>{
     try {
         const post = await PostAddress.find({creator: penisExtension});
         res.status(200).json(post);
-        // throw error;
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
@@ -35,7 +34,9 @@ export const getAddressPostByName = async(req, res) =>{
 export const createAddressPosts= async (req, res) => {
     const post = req.body;
 
-    const newPostAddresses = new PostAddress({ ...post, creator: req.userId, createdAt: new Date().toISOString() })
+    
+    const newPostAddresses = new PostAddress({ ...post, creator: req.userId, createdAt: new Date().toISOString(), service: new Date().toISOString() })
+    console.log(newPostAddresses);
     
     try {
         await newPostAddresses.save();

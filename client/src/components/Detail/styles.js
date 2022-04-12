@@ -25,8 +25,6 @@ export default makeStyles((theme) => ({
   // },
 
   shadowButton:{
-    //alignItems: 'flex-start',
-    
     background: 'linear-gradient(45deg, #81c784 30%, #BAEBBD 90%)',
     border:0,
     borderRadius: 3,
@@ -45,6 +43,17 @@ export default makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     padding: theme.spacing(1),
+    '& p': {
+     
+    },
+    '& button':{
+      marginTop: theme.spacing(1),
+      background: 'linear-gradient(45deg, #81c784 25%, #BAEBBD 60%)',
+      color: '#4A4A48',
+      '&:hover':{
+        boxShadow: "1px 2px 5px 1px rgba(0, 0, 0, .2)",
+      }
+    }
   },
   root: {
     '& .MuiTextField-root': {
@@ -69,12 +78,5 @@ export default makeStyles((theme) => ({
     width: '95%',
     marginLeft: '11px',
   },
-  submitGreen:{
-    marginTop: "10px",
-    background: 'linear-gradient(45deg, #81c784 25%, #BAEBBD 60%)',
-    '&:hover':{
-      boxShadow: "1px 2px 5px 1px rgba(0, 0, 0, .2)",
-    }
-  }
-  //style={{ width: '90%' , marginLeft: '11px'  }}
+
 }));

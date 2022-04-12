@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import './Home.scss';
 import Header from '../Header/Header';
 import ImageOne from './ImageOne/ImageOne';
+import ImageTwo from './ImageTwo/ImageTwo'
 import decode from 'jwt-decode';
 import { useNavigate, useLocation} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -41,6 +42,7 @@ const Home = () => {
     <div className="App">
         <Header/>
         <ImageOne/>
+        <ImageTwo/>
     </div>
   );
 }

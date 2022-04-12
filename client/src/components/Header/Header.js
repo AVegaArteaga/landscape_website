@@ -57,6 +57,15 @@ const Header = () => {
     setUser(null);
   };
 
+//   <Link smooth={true} duration={1000} onClick={() => scroll.scrollToTop()}>
+//   <img src={Logo} className={classes.logo} />
+// </Link>
+
+{/* <Link smooth={true} duration={200} onClick={() => scroll.scrollToTop()}>
+<Typography variant='h5' className={classes.signOutText}>
+  please sign in!
+</Typography>
+</Link>               */}
   return (
     
       <AppBar position="fixed" className={classes.appBar}>
@@ -64,9 +73,7 @@ const Header = () => {
         <StyledToolbar>
 
           {/* Logo & scroll to top*/}
-          <Link smooth={true} duration={1000} onClick={() => scroll.scrollToTop()}>
               <img src={Logo} className={classes.logo} />
-          </Link>
           
 
           {/* scroll to projects & info
@@ -96,11 +103,9 @@ const Header = () => {
               <Button variant='contained' className={classes.logout} color="secondary" onClick={logout}>logout</Button>
             </Box>
             ) : (
-              <Link smooth={true} duration={200} onClick={() => scroll.scrollToTop()}>
                 <Typography variant='h5' className={classes.signOutText}>
                   please sign in!
-                </Typography>
-              </Link>              
+                </Typography>         
             )}
            
 
