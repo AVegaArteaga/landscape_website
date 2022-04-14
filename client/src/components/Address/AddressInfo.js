@@ -3,6 +3,7 @@ import React from 'react';
 import moment from 'moment';
 import useStyle from './styles';
 
+
 const test = (createdAt) => {
     return moment(createdAt, 'YYYY-MM-DDTHH:mm:ss.SSS[Z]').format('MMMM/DD/YYYY');
 }
@@ -13,7 +14,6 @@ const AddressInfo = ({ name, address, city, createdAt, service, state, _id }) =>
 
     return (
         <>
-            
                 <Grid item xs={12} md={12} lg={12}>
                     <Divider textAlign="left" variant='middle'><Chip className={classes.chipColor} label="Address" /> </Divider>
                 </Grid>

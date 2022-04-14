@@ -49,6 +49,7 @@ export default makeStyles((theme) => ({
     '& button':{
       marginTop: theme.spacing(1),
       background: 'linear-gradient(45deg, #81c784 25%, #BAEBBD 60%)',
+      boxShadow: '0 3px 5px 2px rgba(129, 199, 132, .3)',
       color: '#4A4A48',
       '&:hover':{
         boxShadow: "1px 2px 5px 1px rgba(0, 0, 0, .2)",

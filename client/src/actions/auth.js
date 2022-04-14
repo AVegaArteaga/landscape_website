@@ -16,6 +16,7 @@ export const signin = (formData, router) => async (dispatch) => {
 
 export const signup = (formData, router) => async (dispatch) => {
   try {
+    
     const { data } = await api.signUp(formData); //goes to index.js and bring back info
 
     dispatch({ type: AUTH, data }); //tpye AUTH is string for "AUTH" and data is info we got from signUp

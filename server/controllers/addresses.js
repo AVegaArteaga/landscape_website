@@ -15,7 +15,7 @@ export const getAddressPosts = async (req, res) => {
                 
         res.status(200).json(postAddresses);
     } catch (error) {
-        res.status(404).json({ message: error.message });
+        res.status(403).json({ message: error.message });
     }
 }
 

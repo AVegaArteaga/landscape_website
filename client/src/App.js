@@ -6,6 +6,7 @@ import Home from './components/Home/Home';
 import Detail from './components/Detail/Detail';
 import Address from './components/Address/Address';
 import AddressDetail from './components/AddressDetail/AddressDetail';
+import Admin from './components/Admin/Admin';
 
 const App = () => {
 
@@ -29,6 +30,7 @@ const App = () => {
                     <Route exact path="/" element={<Detail/>}/>
                     <Route exact path="/address" element={<Address/>}/>
                     <Route exact path='/address/:addressDetail' element={<AddressDetail/>}/>
+                    <Route exact path='/Admin' element={<Admin/>}/>
                 </Routes>
             
         </BrowserRouter>
